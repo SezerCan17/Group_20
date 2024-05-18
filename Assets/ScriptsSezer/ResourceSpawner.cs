@@ -12,6 +12,9 @@ public class ResourceSpawner : MonoBehaviour
     [SerializeField] private Vector3 exclusionAreaCenter; 
     [SerializeField] private Vector3 exclusionAreaScale;
 
+    public int counter=0;
+    public int spawnNum = 10;
+
     private List<GameObject> activeResources = new List<GameObject>(); 
 
     void Start()
@@ -22,7 +25,7 @@ public class ResourceSpawner : MonoBehaviour
 
     private IEnumerator SpawnResources()
     {
-        while (true)
+        while (counter < spawnNum)
         {
             yield return new WaitForSeconds(spawnIntervalMin);
 
@@ -46,7 +49,10 @@ public class ResourceSpawner : MonoBehaviour
 
             GameObject newResource = Instantiate(resourcePrefab, spawnPosition, Quaternion.identity);
             activeResources.Add(newResource);
+
+            counter++;
         }
+        counter = 0;
     }
 
     public List<GameObject> GetActiveResources()
