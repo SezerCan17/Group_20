@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572ebaa333ff80044a717a025368e7f4, type: 3}
+  m_Name: turret
+  m_EditorClassIdentifier: 
+  itemName: turret
+  type: turret
+  copper_cost: 10
+  iron_cost: 0
+  gold_cost: 0
+  diamond_cost: 0
+  description: 
+  icon: {fileID: 0}
+  inGameModel: {fileID: 1386238130283823919, guid: 10972b0399c0e0e4f810465f5bc8d185,
+    type: 3}
+  placementModel: {fileID: 1246167679546171197, guid: 81cbcfbc1a48b864ebaa55ec1918f773,
+    type: 3}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572ebaa333ff80044a717a025368e7f4, type: 3}
+  m_Name: Copper Rover
+  m_EditorClassIdentifier: 
+  itemName: copper_rover
+  type: rover
+  copper_cost: 10
+  iron_cost: 0
+  gold_cost: 0
+  diamond_cost: 0
+  description: 
+  icon: {fileID: 0}
+  inGameModel: {fileID: 6860272075299260549, guid: ecd5691ceee55434e83829d1bb063911,
+    type: 3}
+  placementModel: {fileID: 0}

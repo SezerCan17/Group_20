@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private float lastStepTime;
     public AudioSource audioSource;
 
+    public bool buildMode;
 
 
     [Serializable]
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject laser;
 
-    float shootTimer = 0f;
+    public float shootTimer = 0f;
 
     public Transform projectileSpawn;
     public GameObject projectile;
@@ -59,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
-        if(Input.GetMouseButton(0) && shootTimer < 0f)
+        if(Input.GetMouseButton(0) && shootTimer < 0f && !buildMode && !EventSystem.current.IsPointerOverGameObject())
         {
             if(playerAnimator.GetFloat("Speed") < 0.1f)
             {
