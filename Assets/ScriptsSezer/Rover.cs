@@ -6,9 +6,9 @@ using TMPro;
 
 public class Rover : MonoBehaviour
 {
-    [SerializeField] private ResourceSpawner spawner; 
+    [SerializeField] public ResourceSpawner spawner; 
     [SerializeField] private TMP_Text resourceCounterText; 
-    [SerializeField] private Transform depotTransform;
+    [SerializeField] public Transform depotTransform;
     [SerializeField] private string gemrengi;
 
     public ResourceController ResourceController { get; private set; }

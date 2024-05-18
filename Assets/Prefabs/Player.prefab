@@ -315,6 +315,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2879781390785380759}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1b8be608f920eb44ca5af1950e886638,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6622899107152639609}
   m_SourcePrefab: {fileID: 100100000, guid: 1b8be608f920eb44ca5af1950e886638, type: 3}
 --- !u!4 &1932369696280227838 stripped
 Transform:
@@ -423,6 +427,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 8724456420364723945}
   stepInterval: 0.6
   audioSource: {fileID: 2879781390785380759}
+  buildMode: 0
   shotClip: {fileID: 8300000, guid: 7252476ffa8570441bed432cc61f35fc, type: 3}
   materialFootstepPairs:
   - material: {fileID: 13400000, guid: a1b96348029241942b90f798c51cbf8b, type: 2}
@@ -436,6 +441,7 @@ MonoBehaviour:
     m_Bits: 63
   groundCheck: {fileID: 8136658522422800737}
   laser: {fileID: 2943255134323162507}
+  shootTimer: 0
   projectileSpawn: {fileID: 1723086817905860397}
   projectile: {fileID: 3013276262244952386, guid: 8260016c2c32ad744ac9a02ed5bca9ce,
     type: 3}
@@ -536,6 +542,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6622899107152639609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557636173358457147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa637a84d5da8146afc21cf0eeccf21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8159326154345288302}
+  marketPlace: {fileID: 0}
+  neRPanel: {fileID: 0}
+  buildingClip: {fileID: 8300000, guid: 5101dc44a77417f44a26c5baddbb6dec, type: 3}
+  items:
+  - {fileID: 11400000, guid: d40e1fade1ce24e43bfc34913310a1a3, type: 2}
+  - {fileID: 11400000, guid: 850644ee815664a41a47ccc45bbc6777, type: 2}
 --- !u!1001 &9098089408090796381
 PrefabInstance:
   m_ObjectHideFlags: 0

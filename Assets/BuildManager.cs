@@ -13,12 +13,26 @@ public class BuildManager : MonoBehaviour
     public GameObject marketPlace;
     public GameObject neRPanel;
 
+
+    public ResourceSpawner blueResourceSpawn;
+    public ResourceSpawner yellowResourceSpawn;
+    public ResourceSpawner greenResourceSpawn;
+    public ResourceSpawner redResourceSpawn;
+
+    public GameObject resourceDrop;
+
     private GameObject currentPlacementModel;
     private MarketItem currentItem;
 
     public AudioClip buildingClip;
 
     public MarketItem[] items;
+
+    public Material placeMaterial;
+
+    public LayerMask hitMask;
+
+    bool canPlace = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +81,26 @@ public class BuildManager : MonoBehaviour
                     if (item.inGameModel != null)
                     {
                         DrawResource(item);
-                        Instantiate(item.inGameModel, Vector3.zero, Quaternion.identity);
+                        GameObject spawnedRover = Instantiate(item.inGameModel, Vector3.zero, Quaternion.identity);
+                        spawnedRover.GetComponent<Rover>().depotTransform = resourceDrop.transform;
+                        Debug.Log(item.itemName);
+                        if(item.itemName == "green_rover")
+                        {
+                            spawnedRover.GetComponent<Rover>().spawner = greenResourceSpawn;
+                        }
+                        else if(item.itemName == "yellow_rover")
+                        {
+                            spawnedRover.GetComponent<Rover>().spawner = yellowResourceSpawn;
+                        }
+                        else if (item.itemName == "blue_rover")
+                        {
+                            spawnedRover.GetComponent<Rover>().spawner = blueResourceSpawn;
+                        }
+                        else if (item.itemName == "red_rover")
+                        {
+                            spawnedRover.GetComponent<Rover>().spawner = redResourceSpawn;
+                        }
+                        
                         player.audioSource.PlayOneShot(buildingClip);
 
                     }
@@ -103,18 +136,30 @@ public class BuildManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, hitMask))
         {
             Vector3 targetPosition = hit.point;
             targetPosition.y = 0; 
             currentPlacementModel.transform.position = targetPosition;
+
+            Debug.Log(hit.transform.tag);
+            if(hit.transform.CompareTag("Base"))
+            {
+                placeMaterial.color = Color.red;
+                canPlace = false;
+            }
+            else
+            {
+                placeMaterial.color = Color.green;
+                canPlace = true;
+            }
         }
     }
 
 
     void PlaceItem()
     {
-        if (currentItem != null && currentItem.inGameModel != null)
+        if (currentItem != null && currentItem.inGameModel != null && canPlace)
         {
             Instantiate(currentItem.inGameModel, currentPlacementModel.transform.position, Quaternion.identity);
             Destroy(currentPlacementModel);
@@ -123,6 +168,7 @@ public class BuildManager : MonoBehaviour
             player.audioSource.PlayOneShot(buildingClip);
             player.shootTimer = 1.2f;
             player.buildMode = false;
+            canPlace = false;
         }
     }
 }

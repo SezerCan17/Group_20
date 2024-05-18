@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 572ebaa333ff80044a717a025368e7f4, type: 3}
-  m_Name: Copper Rover
+  m_Name: Iron Rover
   m_EditorClassIdentifier: 
-  itemName: red_rover
+  itemName: green_rover
   type: rover
   copper_cost: 10
   iron_cost: 0
@@ -20,6 +20,6 @@ MonoBehaviour:
   diamond_cost: 0
   description: 
   icon: {fileID: 0}
-  inGameModel: {fileID: 7273433870047905022, guid: 42e61c872c81ea1488e1f27c81a731f3,
+  inGameModel: {fileID: 2081495744808857749, guid: f6ed3a2eb7893024587cdc0a46acd903,
     type: 3}
   placementModel: {fileID: 0}
