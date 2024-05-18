@@ -16,6 +16,7 @@ public class ResourceSpawner : MonoBehaviour
 
     void Start()
     {
+        
         StartCoroutine(SpawnResources());
     }
 

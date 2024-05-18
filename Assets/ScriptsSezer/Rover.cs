@@ -16,8 +16,12 @@ public class Rover : MonoBehaviour
     private NavMeshAgent _agent;
     private GameObject currentDestination;
     public int resourceCount = 0; 
-    public int carriedResourceCount = 0; 
+    public int carriedResourceCount = 0;
 
+    private void Awake()
+    {
+        gameObject.transform.position = new Vector3(0, 0, 0);
+    }
     void Start()
     {
         ResourceController = FindObjectOfType<ResourceController>();
