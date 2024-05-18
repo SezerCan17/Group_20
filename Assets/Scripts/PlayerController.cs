@@ -65,14 +65,14 @@ public class PlayerController : MonoBehaviour
             {
                 playerAnimator.SetTrigger("Fire");
             }
-            shootTimer = 1.3f;
+            shootTimer = 0.5f;
             StartCoroutine(FireProjectile());
         }
     }
 
     IEnumerator FireProjectile()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         GameObject instantiatedProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
         instantiatedProjectile.GetComponent<Rigidbody>().AddForce(projectileSpawn.forward * projectileSpeed, ForceMode.Impulse);
         Destroy(instantiatedProjectile, 3f);
