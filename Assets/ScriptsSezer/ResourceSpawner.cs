@@ -9,6 +9,8 @@ public class ResourceSpawner : MonoBehaviour
 
     [SerializeField] private Vector3 areaCenter; 
     [SerializeField] private Vector3 areaScale; 
+    [SerializeField] private Vector3 exclusionAreaCenter; 
+    [SerializeField] private Vector3 exclusionAreaScale;
 
     private List<GameObject> activeResources = new List<GameObject>(); 
 
@@ -23,11 +25,23 @@ public class ResourceSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnIntervalMin);
 
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(areaCenter.x - areaScale.x*2 , areaCenter.x + areaScale.x*2 ),
-                areaCenter.y, 
-                Random.Range(areaCenter.z - areaScale.z , areaCenter.z + areaScale.z)
-            );
+            Vector3 spawnPosition;
+            bool isInsideExclusionArea;
+
+            do
+            {
+                spawnPosition = new Vector3(
+                    Random.Range(areaCenter.x - areaScale.x / 2, areaCenter.x + areaScale.x / 2),
+                    areaCenter.y, 
+                    Random.Range(areaCenter.z - areaScale.z / 2, areaCenter.z + areaScale.z / 2)
+                );
+
+                isInsideExclusionArea = (spawnPosition.x > exclusionAreaCenter.x - exclusionAreaScale.x / 2 &&
+                                         spawnPosition.x < exclusionAreaCenter.x + exclusionAreaScale.x / 2 &&
+                                         spawnPosition.z > exclusionAreaCenter.z - exclusionAreaScale.z / 2 &&
+                                         spawnPosition.z < exclusionAreaCenter.z + exclusionAreaScale.z / 2);
+
+            } while (isInsideExclusionArea);
 
             GameObject newResource = Instantiate(resourcePrefab, spawnPosition, Quaternion.identity);
             activeResources.Add(newResource);

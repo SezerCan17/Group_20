@@ -2,18 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class Rover : MonoBehaviour
 {
-    [SerializeField] private ResourceSpawner spawner; // Resource spawner referansý
+    [SerializeField] private ResourceSpawner spawner; 
+    [SerializeField] private TMP_Text resourceCounterText; 
+    [SerializeField] private Transform depotTransform;
+    [SerializeField] private string gemrengi;
+
+    public ResourceController ResourceController { get; private set; }
 
     private NavMeshAgent _agent;
     private GameObject currentDestination;
+    public int resourceCount = 0; 
+    public int carriedResourceCount = 0; 
 
     void Start()
     {
+        ResourceController = FindObjectOfType<ResourceController>();
         _agent = GetComponent<NavMeshAgent>();
         FindNextDestination();
+        UpdateResourceCounterText(); 
     }
 
     void Update()
@@ -25,12 +35,18 @@ public class Rover : MonoBehaviour
             if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
             {
                 CollectCurrentDestination();
-                FindNextDestination();
             }
         }
         else
         {
-            FindNextDestination();
+            if (carriedResourceCount >= 10)
+            {
+                GoToDepot();
+            }
+            else
+            {
+                FindNextDestination();
+            }
         }
     }
 
@@ -64,8 +80,63 @@ public class Rover : MonoBehaviour
     {
         if (currentDestination != null)
         {
+            gemrengi = currentDestination.tag;
             Destroy(currentDestination);
             currentDestination = null;
+            carriedResourceCount++; 
+
+            if (carriedResourceCount >= 1)
+            {
+                GoToDepot();
+            }
+            else
+            {
+                FindNextDestination();
+            }
         }
     }
+
+    void GoToDepot()
+    {
+        _agent.SetDestination(depotTransform.position);
+        if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
+        {
+            DepositResources();
+            FindNextDestination();
+        }
+    }
+
+    void DepositResources()
+    {
+        UpdateResourceCounterText(); 
+        carriedResourceCount = 0; 
+        
+    }
+
+
+    void UpdateResourceCounterText()
+    {
+       
+            switch(gemrengi)
+            {
+                case "Bluegem":
+                    Debug.Log("Geldi mavi");
+                    ResourceController.BlueGemManager(carriedResourceCount, true);
+                    break;
+                case "Redgem":
+                    Debug.Log("Geldi red");
+                    ResourceController.RedGemManager(carriedResourceCount, true);
+                    break;
+                case "Greengem":
+                    Debug.Log("Geldi yeþil");
+                    ResourceController.GreenGemManager(carriedResourceCount, true);
+                    break;
+                case "Yellowgem":
+                    Debug.Log("Geldi sarý");
+                    ResourceController.YellowGemManager(carriedResourceCount, true);
+                    break;
+
+            }
+        }
+    
 }
