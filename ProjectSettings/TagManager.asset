@@ -11,6 +11,7 @@ TagManager:
   - Redgem
   - Yellowgem
   - Base
+  - Enemy
   layers:
   - Default
   - TransparentFX
