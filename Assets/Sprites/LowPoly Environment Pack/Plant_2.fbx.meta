@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 72291467be5a1ed40a9cf2ef5baae196
+guid: df0790778b2f2e74ea24ceaa3fca949d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: cornus_alba_baton_leafes+branch
-    second: {fileID: 2100000, guid: 0ac2af16b7981864a8605874f02f025e, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
