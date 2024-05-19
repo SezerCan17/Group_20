@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StoryScene - Copy.unity
     guid: b5ea4a9f279d37740b3ef34f42035098
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-    guid: f038d2d9df1a6c6448254e2b07e2c161
+    path: Assets/Scenes/Sezer.unity
+    guid: cb44e4da644feb94dae7b7fd26e9935d
+  - enabled: 1
+    path: Assets/Scenes/SettingsMenu.unity
+    guid: 849963ebf22ab3544a6f4b27b1cdf98c
   m_configObjects: {}
