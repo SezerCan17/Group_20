@@ -12,12 +12,15 @@ public class AutoFlip : MonoBehaviour {
     public int AnimationFramesCount = 40;
     bool isFlipping = false;
 
-    public int rightCounter = 0;   
-    public int leftCounter = 0;
+    public GameManager Manager;
+
+    
     public GameObject startButton;
     public GameObject nextButton;
     public GameObject Baslik;
-    // Use this for initialization
+    public float count = 0;
+    public float count2 = 0;
+   
     void Start () {
         if (!ControledBook)
             ControledBook = GetComponent<Book>();
@@ -28,7 +31,17 @@ public class AutoFlip : MonoBehaviour {
 
     private void Update()
     {
-
+        count += Time.deltaTime;
+        count2 += Time.deltaTime;
+        if(count>=3.5f)
+        {
+            FlipRightPage();
+            count = 0f;
+        }
+        if(count2>=17.5f)
+        {
+            Manager.StartButton();
+        }
         //if(rightCounter!=4 && rightCounter!=0)
         //{
         //    startButton.SetActive(false);
@@ -58,12 +71,9 @@ public class AutoFlip : MonoBehaviour {
     }
     public void FlipRightPage()
     {
-        rightCounter++;
-        leftCounter--;
        
         
-           if(rightCounter<5)
-            {
+           
             if (isFlipping) return;
             if (ControledBook.currentPage >= ControledBook.TotalPageCount) return;
             isFlipping = true;
@@ -75,15 +85,14 @@ public class AutoFlip : MonoBehaviour {
             float dx = (xl) * 2 / AnimationFramesCount;
             StartCoroutine(FlipRTL(xc, xl, h, frameTime, dx));
 
-        }
+        
            
 
         
     }
     public void FlipLeftPage()
     {
-        leftCounter++;
-        rightCounter-=1;
+        
         if (isFlipping) return;
         if (ControledBook.currentPage <= 0) return;
         isFlipping = true;
