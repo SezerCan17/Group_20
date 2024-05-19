@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 [RequireComponent(typeof(Book))]
 public class AutoFlip : MonoBehaviour {
     public FlipMode Mode;
@@ -15,6 +16,7 @@ public class AutoFlip : MonoBehaviour {
     public int leftCounter = 0;
     public GameObject startButton;
     public GameObject nextButton;
+    public GameObject Baslik;
     // Use this for initialization
     void Start () {
         if (!ControledBook)
@@ -26,16 +28,25 @@ public class AutoFlip : MonoBehaviour {
 
     private void Update()
     {
-        if(rightCounter!=4)
-        {
-            startButton.SetActive(false);
-            nextButton.SetActive(true);
-        }
-        else if(rightCounter == 4) 
-        {
-            nextButton.SetActive(false);
-            startButton.SetActive(true);
-        }
+
+        //if(rightCounter!=4 && rightCounter!=0)
+        //{
+        //    startButton.SetActive(false);
+        //    nextButton.SetActive(true);
+        //    Baslik.SetActive(false);
+        //}
+        //else if(rightCounter==0)
+        //{
+        //    Baslik.SetActive(true);
+        //    startButton.SetActive(false);
+        //    nextButton.SetActive(true);
+        //}
+        //else if(rightCounter == 4) 
+        //{
+        //    nextButton.SetActive(false);
+        //    startButton.SetActive(true);
+        //    Baslik.SetActive(false);
+        //}
     }
     void PageFlipped()
     {
