@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
     public float projectileSpeed;
 
+    public GameManager gm;
+
 
     void Start()
     {
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(!gm.isPlaying) { return; }
         Move();
         RotateTowardsMouse();
         Fire();
@@ -68,7 +71,7 @@ public class PlayerController : MonoBehaviour
             {
                 playerAnimator.SetTrigger("Fire");
             }
-            shootTimer = 0.5f;
+            shootTimer = 0.3f;
             StartCoroutine(FireProjectile());
         }
     }
@@ -81,7 +84,6 @@ public class PlayerController : MonoBehaviour
         Destroy(instantiatedProjectile, 3f);
         audioSource.PlayOneShot(shotClip);
         
-        Debug.Log("Ateþ Ettim");
     }
     void Move()
     {

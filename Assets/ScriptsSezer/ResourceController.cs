@@ -6,13 +6,13 @@ using TMPro;
 public class ResourceController : MonoBehaviour
 {
     [SerializeField]
-    private int blueGem_Number=0;
+    public int copper_count=0;
     [SerializeField]
-    private int redGem_Number = 0;
+    public int iron_count = 0;
     [SerializeField]
-    private int greenGem_Number = 0;
+    public int gold_count = 0;
     [SerializeField]
-    private int yellowGem_Number = 0;
+    public int diamond_count = 0;
 
     public TMP_Text blueGemText;
     public TMP_Text redGemText;
@@ -24,14 +24,13 @@ public class ResourceController : MonoBehaviour
     {
         if(plus)
         {
-            Debug.Log("geldiiii");
-            blueGem_Number= blueGemNumber;
-            blueGemText.text = "Demir:" + blueGemNumber;
+            diamond_count += blueGemNumber;
+            blueGemText.text = "Elmas: " + diamond_count;
         }
         else
         {
-            blueGem_Number -= blueGemNumber;
-            blueGemText.text = "Demir:" + blueGemNumber;
+            diamond_count -= blueGemNumber;
+            blueGemText.text = "Elmas: " + diamond_count;
         }
         
     }
@@ -41,13 +40,13 @@ public class ResourceController : MonoBehaviour
         if (plus)
         {
 
-            redGem_Number += redGemNumber;
-            redGemText.text = "Bakýr:" + redGemNumber;
+            copper_count += redGemNumber;
+            redGemText.text = "Bakýr: " + copper_count;
         }
         else
         {
-            redGem_Number -= redGemNumber;
-            redGemText.text = "Bakýr:" + redGemNumber;
+            copper_count -= redGemNumber;
+            redGemText.text = "Bakýr: " + copper_count;
         }
 
     }
@@ -56,13 +55,13 @@ public class ResourceController : MonoBehaviour
     {
         if (plus)
         {
-            greenGem_Number += greenGemNumber;
-            greenGemText.text = "Elmas:" + greenGemNumber;
+            iron_count += greenGemNumber;
+            greenGemText.text = "Demir: " + iron_count;
         }
         else
         {
-            greenGem_Number -= greenGemNumber;
-            greenGemText.text = "Elmas:" + greenGemNumber;
+            iron_count -= greenGemNumber;
+            greenGemText.text = "Demir: " + iron_count;
         }
 
     }
@@ -71,13 +70,13 @@ public class ResourceController : MonoBehaviour
     {
         if (plus)
         {
-            yellowGem_Number += yellowGemNumber;
-            yellowGemText.text = "Altýn:" + yellowGemNumber;
+            gold_count += yellowGemNumber;
+            yellowGemText.text = "Altýn: " + gold_count;
         }
         else
         {
-            yellowGem_Number -= yellowGemNumber;
-            yellowGemText.text = "Altýn:" + yellowGemNumber;
+            gold_count -= yellowGemNumber;
+            yellowGemText.text = "Altýn: " + gold_count;
         }
 
     }

@@ -4,51 +4,42 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Enemy : Agent
+public class UzaylÄ±Ajan : Agent
 {
-
-    public int hitPoints = 3;
-    public bool isDead = false;
-    public GameObject particleEffect;
-    public GameObject deadPrefab;
-    public Image healthImage;
-
-
+   
     private Rigidbody rbody;
     public Transform target;
     public Transform body;
-    float carpan = 20f;
+    public float carpan = 20f;
 
-    public GameManager gm;
-
+    // Initialize the agent
     void Start()
     {
-
+        
         rbody = GetComponent<Rigidbody>();
     }
-
 
     void FixedUpdate()
     {
 
-        rbody.velocity = rbody.velocity.normalized * 1.5f;
+            rbody.velocity = rbody.velocity.normalized * 2.5f;
     }
-
-
     private void Update()
     {
         Vector3 targetPosition = target.position;
 
+        // Child pozisyonunu belirle
         Vector3 childPosition = body.position;
 
+        // Hedef pozisyonuna doÄŸru Ã§evir
         body.LookAt(targetPosition);
     }
 
-
+    // Called when the agent's episode begins
     public override void OnEpisodeBegin()
     {
+        // Reset position if the agent fell
         if (transform.localPosition.y < 0)
         {
             rbody.angularVelocity = Vector3.zero;
@@ -57,18 +48,25 @@ public class Enemy : Agent
             transform.rotation = Quaternion.identity;
         }
 
+        // Move the target to a new random position
+        target.localPosition = new Vector3(Random.value * 8 - 4,
+                                           0.5f,
+                                           Random.value * 8 - 4);
     }
 
-
+    // Collect observations for the agent
     public override void CollectObservations(VectorSensor sensor)
     {
+        // Target and Agent positions
         sensor.AddObservation(target.localPosition);
         sensor.AddObservation(transform.localPosition);
 
+        // Agent velocity
         sensor.AddObservation(rbody.velocity.x);
         sensor.AddObservation(rbody.velocity.z);
     }
 
+    // Process actions received from the agent's policy
     public override void OnActionReceived(ActionBuffers actions)
     {
         Vector3 controlSignal = Vector3.zero;
@@ -76,12 +74,19 @@ public class Enemy : Agent
         controlSignal.z = actions.ContinuousActions[1];
         rbody.AddForce(controlSignal * carpan);
 
+
+        
+
+
+        // Rewards
         float distanceToTarget = Vector3.Distance(transform.localPosition, target.localPosition);
-        if (distanceToTarget < 0.7f)
+        if (distanceToTarget < 3f)
         {
-            AttackToBase();
+            SetReward(1.0f);
+            EndEpisode();
         }
 
+        // Fell off platform
         if (transform.localPosition.y < 0f)
         {
             SetReward(-1f);
@@ -89,57 +94,11 @@ public class Enemy : Agent
         }
     }
 
+    // Provide a heuristic for manual control (for debugging purposes)
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var continuousActionsOut = actionsOut.ContinuousActions;
         continuousActionsOut[0] = Input.GetAxis("Horizontal");
         continuousActionsOut[1] = Input.GetAxis("Vertical");
-    }
-
-
-
-    void AttackToBase()
-    {
-        GetHit(100);
-        gm.AttackBase();
-    }
-
-    public void GetHit(int hitPoint)
-    {
-        if (hitPoints > 0)
-        {
-            hitPoints -= hitPoint;
-            GameObject hitEffect = Instantiate(particleEffect, this.transform);
-
-            hitEffect.transform.localPosition = new Vector3(0, .5f, 0); // Parent'ýn konumuna göre ayarla
-            hitEffect.transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
-            Destroy(hitEffect, 1f);
-            ChangeUI();
-            if (hitPoints <= 0)
-            {
-                Die();
-            }
-        }
-        
-    }
-
-    void ChangeUI()
-    {
-        if(hitPoints == 2)
-        {
-            healthImage.rectTransform.sizeDelta = new Vector2(.66f, 0.2f);
-        }
-        else if (hitPoints == 1)
-        {
-            healthImage.rectTransform.sizeDelta = new Vector2(.33f, 0.2f);
-        }
-    }
-
-    void Die()
-    {
-        isDead = true;
-        Instantiate(deadPrefab, new Vector3(transform.position.x,.5f,transform.position.z),transform.rotation);
-        gm.activeEnemies.Remove(transform.GetComponent<Enemy>());
-        Destroy(gameObject);
     }
 }

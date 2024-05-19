@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: turret
   type: turret
   copper_cost: 10
-  iron_cost: 0
+  iron_cost: 20
   gold_cost: 0
   diamond_cost: 0
   description: 

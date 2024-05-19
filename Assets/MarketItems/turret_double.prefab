@@ -516,8 +516,9 @@ MonoBehaviour:
   hitParticle: {fileID: 3653787217335710190, guid: 756267e31c62fd7459168c395bda0bbf,
     type: 3}
   turretAus: {fileID: 6094860374950821675}
-  shootSFX: {fileID: 8300000, guid: 7252476ffa8570441bed432cc61f35fc, type: 3}
+  shootSFX: {fileID: 8300000, guid: 239684798e92166449228f62cb5783a3, type: 3}
   turretHead: {fileID: 7523535272712085697}
+  turretLevelText: {fileID: 0}
 --- !u!136 &5623132933359270825
 CapsuleCollider:
   m_ObjectHideFlags: 0

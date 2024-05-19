@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: green_rover
   type: rover
-  copper_cost: 10
+  copper_cost: 25
   iron_cost: 0
   gold_cost: 0
   diamond_cost: 0
   description: 
   icon: {fileID: 0}
-  inGameModel: {fileID: 2081495744808857749, guid: f6ed3a2eb7893024587cdc0a46acd903,
+  inGameModel: {fileID: 8184864325155251613, guid: f6ed3a2eb7893024587cdc0a46acd903,
     type: 3}
   placementModel: {fileID: 0}

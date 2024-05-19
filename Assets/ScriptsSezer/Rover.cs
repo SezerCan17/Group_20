@@ -61,6 +61,7 @@ public class Rover : MonoBehaviour
         if (activeResources.Count == 0)
         {
             currentDestination = null;
+            StartCoroutine(WaitAndFind());
             return;
         }
 
@@ -80,11 +81,17 @@ public class Rover : MonoBehaviour
         currentDestination = nearestPoint;
     }
 
+    IEnumerator WaitAndFind()
+    {
+        yield return new WaitForSeconds(5f);
+        FindNextDestination();
+    }
     void CollectCurrentDestination()
     {
         if (currentDestination != null)
         {
             gemrengi = currentDestination.tag;
+            spawner.activeResources.Remove(currentDestination.gameObject);
             Destroy(currentDestination);
             currentDestination = null;
             carriedResourceCount++; 

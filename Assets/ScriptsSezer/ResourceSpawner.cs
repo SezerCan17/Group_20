@@ -15,7 +15,7 @@ public class ResourceSpawner : MonoBehaviour
     public int counter=0;
     public int spawnNum = 10;
 
-    private List<GameObject> activeResources = new List<GameObject>(); 
+    public List<GameObject> activeResources = new List<GameObject>(); 
 
     void Start()
     {
@@ -27,37 +27,43 @@ public class ResourceSpawner : MonoBehaviour
     {
         while (counter < spawnNum)
         {
-            yield return new WaitForSeconds(spawnIntervalMin);
-
-            Vector3 spawnPosition;
-            bool isInsideExclusionArea;
-
-            do
+            if (activeResources.Count < 10 )
             {
-                spawnPosition = new Vector3(
-                    Random.Range(areaCenter.x - areaScale.x / 2, areaCenter.x + areaScale.x / 2),
-                    areaCenter.y, 
-                    Random.Range(areaCenter.z - areaScale.z / 2, areaCenter.z + areaScale.z / 2)
-                );
+                yield return new WaitForSeconds(spawnIntervalMin);
 
-                isInsideExclusionArea = (spawnPosition.x > exclusionAreaCenter.x - exclusionAreaScale.x / 2 &&
-                                         spawnPosition.x < exclusionAreaCenter.x + exclusionAreaScale.x / 2 &&
-                                         spawnPosition.z > exclusionAreaCenter.z - exclusionAreaScale.z / 2 &&
-                                         spawnPosition.z < exclusionAreaCenter.z + exclusionAreaScale.z / 2);
+                Vector3 spawnPosition;
+                bool isInsideExclusionArea;
 
-            } while (isInsideExclusionArea);
+                do
+                {
+                    spawnPosition = new Vector3(
+                        Random.Range(areaCenter.x - areaScale.x / 2, areaCenter.x + areaScale.x / 2),
+                        areaCenter.y,
+                        Random.Range(areaCenter.z - areaScale.z / 2, areaCenter.z + areaScale.z / 2)
+                    );
 
-            GameObject newResource = Instantiate(resourcePrefab, spawnPosition, Quaternion.identity);
-            activeResources.Add(newResource);
+                    isInsideExclusionArea = (spawnPosition.x > exclusionAreaCenter.x - exclusionAreaScale.x / 2 &&
+                                             spawnPosition.x < exclusionAreaCenter.x + exclusionAreaScale.x / 2 &&
+                                             spawnPosition.z > exclusionAreaCenter.z - exclusionAreaScale.z / 2 &&
+                                             spawnPosition.z < exclusionAreaCenter.z + exclusionAreaScale.z / 2);
 
-            counter++;
+                } while (isInsideExclusionArea);
+
+                GameObject newResource = Instantiate(resourcePrefab, spawnPosition, Quaternion.identity);
+                activeResources.Add(newResource);
+
+                counter++;
+            }
+            else
+            {
+                yield return new WaitForSeconds((int)spawnIntervalMin);
+            }
+            
         }
-        counter = 0;
     }
 
     public List<GameObject> GetActiveResources()
     {
-        activeResources.RemoveAll(item => item == null); 
-        return new List<GameObject>(activeResources); 
+        return activeResources;
     }
 }

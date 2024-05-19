@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 1133453509235144602}
   m_Layer: 0
   m_Name: BlueRover
-  m_TagString: Untagged
+  m_TagString: Rover
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

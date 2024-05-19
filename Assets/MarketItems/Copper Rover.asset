@@ -20,6 +20,6 @@ MonoBehaviour:
   diamond_cost: 0
   description: 
   icon: {fileID: 0}
-  inGameModel: {fileID: 7273433870047905022, guid: 42e61c872c81ea1488e1f27c81a731f3,
+  inGameModel: {fileID: 2084379213450739692, guid: 42e61c872c81ea1488e1f27c81a731f3,
     type: 3}
   placementModel: {fileID: 0}

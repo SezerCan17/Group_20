@@ -2,19 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+
+    public ResourceController resources;
+
     public int day;
     public GameObject PauseMenu;
     public GameObject MarketMenu;
+    public bool isPlaying = false;
+
+    int spawnCount = 0;
+
+    float lastSpawnTime = 0;
+    float nextSpawnDelay = 0;
+
+    public TextMeshProUGUI dayText;
+    public GameObject dayPanel;
+
+
+    bool timeSlow = false;
+
+    public List<Enemy> activeEnemies;
+    public GameObject enemyPrefab;
+    public Transform enemyTarget;
+
+    public Transform healthBar;
 
     private void Awake()
     {
         PauseMenu.SetActive(false);
+        PrepareDay();
     }
     private void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            if(timeSlow)
+            {
+                Time.timeScale = 0.5f;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+            }
+
+            timeSlow = !timeSlow;
+        }
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(Time.timeScale==1f)
@@ -27,7 +66,99 @@ public class GameManager : MonoBehaviour
             }
             
         }
+
         
+
+
+        if(isPlaying)
+        {
+            if (spawnCount < (day * 10))
+            {
+                if(Time.time - lastSpawnTime > nextSpawnDelay)
+                {
+                    SpawnEnemy();
+                    lastSpawnTime = Time.time;
+                    nextSpawnDelay = Random.Range(0f, 5f);
+                }
+                
+            }
+
+            if (activeEnemies.Count <= 0)
+            {
+                EndDay();
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartDay();
+            }
+        }
+
+        
+        
+    }
+
+    void SpawnEnemy()
+    {
+        lastSpawnTime = Time.time;
+        float angleInDegrees = Random.Range(0f, 360f);
+        float angleInRadians = angleInDegrees * Mathf.Deg2Rad;
+
+        float radius = Random.Range(40, 100);
+        float x = Mathf.Cos(angleInRadians) * radius;
+        float z = Mathf.Sin(angleInRadians) * radius;
+
+        Vector3 spawnPosition = new Vector3(x, 0.1f, z);
+
+        GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Enemy enemyComponent = spawnedEnemy.GetComponent<Enemy>();
+        enemyComponent.gm = this.GetComponent<GameManager>();
+        enemyComponent.target = enemyTarget;
+
+        activeEnemies.Add(enemyComponent);
+        spawnCount++;
+    }
+    void PrepareDay()
+    {
+        
+        dayText.text = "Gün " + day.ToString();
+
+        dayPanel.SetActive(true);
+    }
+
+
+    void StartDay()
+    {
+        GameObject[] rovers = GameObject.FindGameObjectsWithTag("Rover");
+
+        foreach (GameObject rover in rovers)
+        {
+            rover.transform.position = Vector3.zero;
+            rover.GetComponent<Rover>().enabled = true;
+            
+        }
+        dayPanel.SetActive(false);
+
+        isPlaying = true;
+        spawnCount = 0;
+        
+
+    }
+
+    void EndDay()
+    {
+        isPlaying = false;
+        day++;
+        PrepareDay();
+        GameObject[] rovers = GameObject.FindGameObjectsWithTag("Rover");
+
+        foreach (GameObject rover in rovers)
+        {
+            rover.GetComponent<Rover>().enabled = false;
+            rover.transform.position = Vector3.zero;
+        }
     }
     public void StartButton()
     {
@@ -69,14 +200,30 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        day = 0;
+        Debug.Log("Game Over");
     }
 
-    public void NextWeek()
+
+
+    public void AttackBase()
     {
-        day++;
-    }
+        int childCount = healthBar.transform.childCount;
 
+        
+        if (childCount > 0)
+        {
+           
+            GameObject lastChild = healthBar.GetChild(childCount - 1).gameObject;
+
+           
+            Destroy(lastChild);
+        }
+        else
+        {
+            GameOver();
+        }
+
+    }
 
 
 }

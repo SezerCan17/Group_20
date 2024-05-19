@@ -12,6 +12,7 @@ TagManager:
   - Yellowgem
   - Base
   - Enemy
+  - Rover
   layers:
   - Default
   - TransparentFX

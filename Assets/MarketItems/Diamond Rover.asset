@@ -15,11 +15,11 @@ MonoBehaviour:
   itemName: blue_rover
   type: rover
   copper_cost: 10
-  iron_cost: 0
-  gold_cost: 0
+  iron_cost: 25
+  gold_cost: 50
   diamond_cost: 0
   description: 
   icon: {fileID: 0}
-  inGameModel: {fileID: 3331304453675644323, guid: 89ffab74fa8d9554381fb3c50da721f9,
+  inGameModel: {fileID: 4802753711421239455, guid: 996b6928f6d6af7449e2271fff98bff5,
     type: 3}
   placementModel: {fileID: 0}

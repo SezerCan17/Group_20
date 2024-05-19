@@ -8,6 +8,7 @@ using static UnityEditor.Progress;
 public class BuildManager : MonoBehaviour
 {
 
+    public GameManager gm;
 
     public PlayerController player;
     public GameObject marketPlace;
@@ -74,52 +75,59 @@ public class BuildManager : MonoBehaviour
             {
 
                 currentItem = item;
-                // if(player.copper > item.copper_cost && player.iron > item.iron_cost && player.gold > item.gold_cost && player.diamond > item.diamond_cost)
-                // {
-                if (item.type == "rover")
-                {
-                    if (item.inGameModel != null)
+                 if(gm.resources.copper_count >= item.copper_cost && gm.resources.iron_count >= item.iron_cost && gm.resources.gold_count >= item.gold_cost && gm.resources.diamond_count >= item.diamond_cost)
+                 {
+                    if (item.type == "rover")
                     {
-                        DrawResource(item);
-                        GameObject spawnedRover = Instantiate(item.inGameModel, Vector3.zero, Quaternion.identity);
-                        spawnedRover.GetComponent<Rover>().depotTransform = resourceDrop.transform;
-                        Debug.Log(item.itemName);
-                        if(item.itemName == "green_rover")
+                        if (item.inGameModel != null)
                         {
-                            spawnedRover.GetComponent<Rover>().spawner = greenResourceSpawn;
-                        }
-                        else if(item.itemName == "yellow_rover")
-                        {
-                            spawnedRover.GetComponent<Rover>().spawner = yellowResourceSpawn;
-                        }
-                        else if (item.itemName == "blue_rover")
-                        {
-                            spawnedRover.GetComponent<Rover>().spawner = blueResourceSpawn;
-                        }
-                        else if (item.itemName == "red_rover")
-                        {
-                            spawnedRover.GetComponent<Rover>().spawner = redResourceSpawn;
-                        }
+                            DrawResource(item);
+                            GameObject spawnedRover = Instantiate(item.inGameModel, Vector3.zero, Quaternion.identity);
+                            spawnedRover.GetComponent<Rover>().depotTransform = resourceDrop.transform;
+                            if(item.itemName == "green_rover")
+                            {
+                                spawnedRover.GetComponent<Rover>().spawner = greenResourceSpawn;
+                                
+                            }
+                            else if(item.itemName == "yellow_rover")
+                            {
+                                spawnedRover.GetComponent<Rover>().spawner = yellowResourceSpawn;
+                                
+                            }
+                            else if (item.itemName == "blue_rover")
+                            {
+                                spawnedRover.GetComponent<Rover>().spawner = blueResourceSpawn;
+                               
+                            }
+                            else if (item.itemName == "red_rover")
+                            {
+                                spawnedRover.GetComponent<Rover>().spawner = redResourceSpawn;
+                               
+                            }
                         
-                        player.audioSource.PlayOneShot(buildingClip);
+                            player.audioSource.PlayOneShot(buildingClip);
+                            player.shootTimer = 1.2f;
+                            player.buildMode = false;
+                            canPlace = false;
 
+                        }
                     }
-                }
-                else if(item.type == "turret")
+                    else if(item.type == "turret")
+                    {
+                        currentPlacementModel = Instantiate(item.placementModel, Vector3.zero, Quaternion.identity);
+                        marketPlace.SetActive(false);
+                        player.shootTimer = 1.2f;
+                        player.buildMode = false;
+                        canPlace = false;
+                    }
+                 }
+                else
                 {
-                    currentPlacementModel = Instantiate(item.placementModel, Vector3.zero, Quaternion.identity);
-                    marketPlace.SetActive(false);
+                        marketPlace.SetActive(false);
+                        neRPanel.SetActive(true);
+                        player.buildMode = false;
+                        canPlace = false;
                 }
-                //  }
-                // else
-                // {
-                //        marketPlace.SetActive(false);
-                //        neRPanel.SetActive(true);
-                //        player.buildMode = false;
-                // }
-
-
-
                 return; 
             }
         }
@@ -127,10 +135,10 @@ public class BuildManager : MonoBehaviour
 
     void DrawResource(MarketItem item)
     {
-        // player.copper -= item.copper_cost
-        // player.iron -= item.iron_cost
-        // player.gold -= item.gold_cost
-        // player.diamond -= item.diamond_cost
+        gm.resources.YellowGemManager(item.diamond_cost, false);
+        gm.resources.RedGemManager(item.copper_cost, false);
+        gm.resources.BlueGemManager(item.gold_cost, false);
+        gm.resources.GreenGemManager(item.iron_cost, false);
     }
     void FollowMouse()
     {
