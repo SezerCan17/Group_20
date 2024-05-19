@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Book))]
 public class AutoFlip : MonoBehaviour {
@@ -11,6 +12,7 @@ public class AutoFlip : MonoBehaviour {
     public Book ControledBook;
     public int AnimationFramesCount = 40;
     bool isFlipping = false;
+    public bool Basla=false;
 
     public GameManager Manager;
 
@@ -31,35 +33,21 @@ public class AutoFlip : MonoBehaviour {
 
     private void Update()
     {
-        count += Time.deltaTime;
-        count2 += Time.deltaTime;
-        if(count>=3.5f)
+        if(Basla)
         {
-            FlipRightPage();
-            count = 0f;
+            count += Time.deltaTime;
+            count2 += Time.deltaTime;
+            if (count >= 3.5f)
+            {
+                FlipRightPage();
+                count = 0f;
+            }
+            if (count2 >= 17.5f)
+            {
+                Manager.Start2();
+            }
         }
-        if(count2>=17.5f)
-        {
-            Manager.StartButton();
-        }
-        //if(rightCounter!=4 && rightCounter!=0)
-        //{
-        //    startButton.SetActive(false);
-        //    nextButton.SetActive(true);
-        //    Baslik.SetActive(false);
-        //}
-        //else if(rightCounter==0)
-        //{
-        //    Baslik.SetActive(true);
-        //    startButton.SetActive(false);
-        //    nextButton.SetActive(true);
-        //}
-        //else if(rightCounter == 4) 
-        //{
-        //    nextButton.SetActive(false);
-        //    startButton.SetActive(true);
-        //    Baslik.SetActive(false);
-        //}
+        
     }
     void PageFlipped()
     {
@@ -112,20 +100,7 @@ public class AutoFlip : MonoBehaviour {
         float xl = ((ControledBook.EndBottomRight.x - ControledBook.EndBottomLeft.x) / 2)*0.9f;
         //float h =  ControledBook.Height * 0.5f;
         float h = Mathf.Abs(ControledBook.EndBottomRight.y)*0.9f;
-        //y=-(h/(xl)^2)*(x-xc)^2          
-        //               y         
-        //               |          
-        //               |          
-        //               |          
-        //_______________|_________________x         
-        //              o|o             |
-        //           o   |   o          |
-        //         o     |     o        | h
-        //        o      |      o       |
-        //       o------xc-------o      -
-        //               |<--xl-->
-        //               |
-        //               |
+        
         float dx = (xl)*2 / AnimationFramesCount;
         switch (Mode)
         {

@@ -7,8 +7,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-
+    public AutoFlip autoFlip;
+    public GameObject MainMenu;
+    public GameObject Story1;
+    public GameObject Story2;
+    public GameObject Story3;
     public ResourceController resources;
+    public float counter = 0;
+   
+  
+    public bool start=false;
 
     public int day;
     public GameObject PauseMenu;
@@ -39,6 +47,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        
+        
 
         if(Input.GetKeyDown(KeyCode.T))
         {
@@ -99,7 +109,7 @@ public class GameManager : MonoBehaviour
         
         
     }
-
+    
     void SpawnEnemy()
     {
         lastSpawnTime = Time.time;
@@ -162,7 +172,49 @@ public class GameManager : MonoBehaviour
     }
     public void StartButton()
     {
+        start = true;
+        MainMenu.SetActive(false);
+        Story1.SetActive(true);
+        StartCoroutine(CounterCoroutine());
+        autoFlip.Basla = true;
+        
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void Start2()
+    {
+        Story3.SetActive(true);
+        StartCoroutine(CounterCoroutine2());
+    }
+    private IEnumerator CounterCoroutine()
+    {
+        float counter = 0f;
+        while (counter < 10f)
+        {
+            counter += Time.deltaTime;
+            
+            yield return null;
+        }
+
+        Story1.SetActive(false);
+        Story2.SetActive(true);
+        
+        //autoFlip.Basla = true;
+    }
+    private IEnumerator CounterCoroutine2()
+    {
+        float counter = 0f;
+        while (counter < 10f)
+        {
+            counter += Time.deltaTime;
+          
+            yield return null;
+        }
+
+        Story1.SetActive(false);
+        
+        Story2.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
     public void PauseButton()

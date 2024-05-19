@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: c354bd45fdc23e14d9c89d2412ba40cf
   - enabled: 1
-    path: Assets/Scenes/StoryScene - Copy.unity
-    guid: b5ea4a9f279d37740b3ef34f42035098
-  - enabled: 1
     path: Assets/Scenes/Sezer.unity
     guid: cb44e4da644feb94dae7b7fd26e9935d
   - enabled: 1
