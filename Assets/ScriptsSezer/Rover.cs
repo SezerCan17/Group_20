@@ -17,6 +17,7 @@ public class Rover : MonoBehaviour
     private GameObject currentDestination;
     public int resourceCount = 0; 
     public int carriedResourceCount = 0;
+    public AudioSource collectResource;
 
     private void Awake()
     {
@@ -93,6 +94,7 @@ public class Rover : MonoBehaviour
             gemrengi = currentDestination.tag;
             spawner.activeResources.Remove(currentDestination.gameObject);
             Destroy(currentDestination);
+            collectResource.Play();
             currentDestination = null;
             carriedResourceCount++; 
 

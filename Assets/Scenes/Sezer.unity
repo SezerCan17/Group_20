@@ -4278,6 +4278,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2879781390785380759, guid: b58de7be580aa994e9d437e405658850,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879781390785380759, guid: b58de7be580aa994e9d437e405658850,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 543b93ae23d97444da896c6422f484bc, type: 3}
     - target: {fileID: 5785638945177484161, guid: b58de7be580aa994e9d437e405658850,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21918,6 +21928,7 @@ MonoBehaviour:
     type: 3}
   enemyTarget: {fileID: 1210603440}
   healthBar: {fileID: 1263151912}
+  timeManager: {fileID: 1141051898}
 --- !u!4 &1918582058
 Transform:
   m_ObjectHideFlags: 0
