@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
   
     public bool start=false;
 
-    public int day=1;
+    public int day=51;
     public GameObject PauseMenu;
     public GameObject GameOverMenu;
     public GameObject MarketMenu;
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
             HealthBarTutorial.SetActive(false);
             Tutorial.SetActive(false);
             health=false;
-            day = 1;
+            day = 51;
             tutorialFinish = true;
           
             PrepareDay();
@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour
 
         
         DayImage.color = targetColor;
-
+        dayPanel.SetActive(false);
     }
 
     private IEnumerator CounterCoroutine4()
@@ -271,7 +271,10 @@ public class GameManager : MonoBehaviour
 
     void StartDay()
     {
-
+        dayPanel.SetActive(false);
+        timeManager.TimeSlider.value = 1;
+        isPlaying = true;
+        spawnCount = 0;
         Debug.Log("Gün2 Kontrol2");
         GameObject[] rovers = GameObject.FindGameObjectsWithTag("Rover");
 
@@ -282,10 +285,7 @@ public class GameManager : MonoBehaviour
             
         }
         Debug.Log("Gün2 Kontrol3");
-        dayPanel.SetActive(false);
-        timeManager.TimeSlider.value = 1;
-        isPlaying = true;
-        spawnCount = 0;
+        
         
 
     }

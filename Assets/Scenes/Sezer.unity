@@ -4285,6 +4285,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2879781390785380759, guid: b58de7be580aa994e9d437e405658850,
         type: 3}
+      propertyPath: m_Volume
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879781390785380759, guid: b58de7be580aa994e9d437e405658850,
+        type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 543b93ae23d97444da896c6422f484bc, type: 3}
@@ -4427,6 +4432,11 @@ PrefabInstance:
       propertyPath: yellowResourceSpawn
       value: 
       objectReference: {fileID: 322732792}
+    - target: {fileID: 7642652879652342664, guid: b58de7be580aa994e9d437e405658850,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 8159326154345288302, guid: b58de7be580aa994e9d437e405658850,
         type: 3}
       propertyPath: gm
