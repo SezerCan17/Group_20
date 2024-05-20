@@ -3,16 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Threading;
+using UnityEngine.AI;
 public class TimeManager : MonoBehaviour
 {
     public Slider TimeSlider;
     private bool slowDown = false;
     private bool speedUp = false;
     private bool normalTime=false;
+    public GameManager GameManager;
+    public GameObject ImageGo;
+    public BuildManager BuildManager;
+  
+
+    public float blinkSpeed = 1.0f; 
+    public Image alertImage;
+    private float targetAlpha = 0.0f;
+    private float currentAlpha = 0.0f;
 
 
     void Start()
     {
+        
+        NormalTimeButton();
         TimeSlider.value = 10;
     }
 
@@ -22,21 +35,104 @@ public class TimeManager : MonoBehaviour
         if(slowDown)
         {
             TimeSlider.value -= Time.deltaTime;
-            //Uzaylýlarýn hýzlarýný yavaþlat!!!!
-            if(TimeSlider.value==0)
+            
+            foreach (Enemy obj in GameManager.activeEnemies)
             {
-                NormalTimeButton();
+                
+                Rigidbody rb = obj.GetComponent<Rigidbody>();
+                if (rb != null && !rb.isKinematic)
+                {
+                    rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+                    rb.velocity *= 0f;
+                    rb.angularVelocity *= 0f;
+
+                }
+                
             }
+            foreach (GameObject obj in BuildManager.rovers)
+            {
+                // Eðer nesnenin üzerinde NavMeshAgent bileþeni yoksa iþlem yapmayýn
+                NavMeshAgent agent = obj.GetComponent<NavMeshAgent>();
+                if (agent != null)
+                {
+                    // NavMeshAgent hýzýný deðiþtirin
+                    agent.speed = 0f; // Yeni hýz deðeri
+                }
+            }
+            if (TimeSlider.value == 0)
+            {
+                Debug.Log("0");
+                ImageGo.SetActive(true);
+                Alert();
+            }
+            else
+            {
+                ImageGo.SetActive(false);
+            }
+
         }
-        else if(speedUp)
+        else if(normalTime)
         {
             TimeSlider.value += Time.deltaTime;
-            //Uzaylýlarýn hýzlarýný artýr!!!!
-            if (TimeSlider.value==20)
+            foreach (Enemy obj in GameManager.activeEnemies)
             {
-                NormalTimeButton();
+
+                Rigidbody rb = obj.GetComponent<Rigidbody>();
+                if (rb != null && !rb.isKinematic)
+                {
+                   
+                    rb.constraints = RigidbodyConstraints.None;
+                    rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+
+                }
             }
+            foreach (GameObject obj in BuildManager.rovers)
+            {
+                // Eðer nesnenin üzerinde NavMeshAgent bileþeni yoksa iþlem yapmayýn
+                NavMeshAgent agent = obj.GetComponent<NavMeshAgent>();
+                if (agent != null)
+                {
+                    // NavMeshAgent hýzýný deðiþtirin
+                    agent.speed = 3f; // Yeni hýz deðeri
+                }
+            }
+            if (TimeSlider.value == 44)
+            {
+                Debug.Log("44");
+                ImageGo.SetActive(true);
+                Alert();
+            }
+            else
+            {
+                ImageGo.SetActive(false);
+            }
+
         }
+
+        
+    }
+
+    public void Alert()
+    {
+        
+            if (currentAlpha <= 0.0f)
+            {
+                targetAlpha = 1.0f;
+            }
+            else if (currentAlpha >= 1.0f)
+            {
+                targetAlpha = 0.0f;
+            }
+
+           
+            currentAlpha = Mathf.MoveTowards(currentAlpha, targetAlpha, blinkSpeed * Time.deltaTime);
+
+           
+            Color newColor = alertImage.color;
+            newColor.a = currentAlpha;
+            alertImage.color = newColor;
+        
     }
     public void SlowDownButton()
     {

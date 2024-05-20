@@ -162,16 +162,16 @@ public class GameManager : MonoBehaviour
         targetColor.a = 1f;
         float elapsedTime = 0;
 
-        // Renk alfa kanalýný þeffaftan opaklýða deðiþtir
+     
         while (elapsedTime < duration)
         {
             float alpha = Mathf.Lerp(0f, 1f, elapsedTime / duration);
             DayImage.color = new Color(color.r, color.g, color.b, alpha);
             elapsedTime += Time.deltaTime;
-            yield return null; // Bir frame bekle
+            yield return null;
         }
 
-        // Rengi tamamen opak hale getir
+        
         DayImage.color = targetColor;
 
     }
@@ -189,16 +189,14 @@ public class GameManager : MonoBehaviour
         targetColor.a = 0f;
         float elapsedTime = 0;
 
-        // Renk alfa kanalýný þeffaftan opaklýða deðiþtir
         while (elapsedTime < duration)
         {
             float alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
             DayImage.color = new Color(color.r, color.g, color.b, alpha);
             elapsedTime += Time.deltaTime;
-            yield return null; // Bir frame bekle
+            yield return null; 
         }
 
-        // Rengi tamamen opak hale getir
         DayImage.color = targetColor;
 
     }
@@ -242,7 +240,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(CounterCoroutine());
         autoFlip.Basla = true;
         
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
     }
     public void Start2()
     {
@@ -262,7 +260,7 @@ public class GameManager : MonoBehaviour
         Story1.SetActive(false);
         Story2.SetActive(true);
         
-        //autoFlip.Basla = true;
+       
     }
     private IEnumerator CounterCoroutine2()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using static UnityEditor.Progress;
+using Unity.VisualScripting;
 
 public class BuildManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class BuildManager : MonoBehaviour
     public PlayerController player;
     public GameObject marketPlace;
     public GameObject neRPanel;
+    public List<GameObject> rovers;
 
 
     public ResourceSpawner blueResourceSpawn;
@@ -87,22 +89,23 @@ public class BuildManager : MonoBehaviour
                             if(item.itemName == "green_rover")
                             {
                                 spawnedRover.GetComponent<Rover>().spawner = greenResourceSpawn;
+                                rovers.Add(spawnedRover);
                                 
                             }
                             else if(item.itemName == "yellow_rover")
                             {
                                 spawnedRover.GetComponent<Rover>().spawner = yellowResourceSpawn;
-                                
+                                rovers.Add(spawnedRover);
                             }
                             else if (item.itemName == "blue_rover")
                             {
                                 spawnedRover.GetComponent<Rover>().spawner = blueResourceSpawn;
-                               
+                                rovers.Add(spawnedRover);
                             }
                             else if (item.itemName == "red_rover")
                             {
                                 spawnedRover.GetComponent<Rover>().spawner = redResourceSpawn;
-                               
+                                rovers.Add(spawnedRover);
                             }
                         
                             player.audioSource.PlayOneShot(buildingClip);
