@@ -702,9 +702,12 @@ MonoBehaviour:
   Story3: {fileID: 1318521710}
   resources: {fileID: 0}
   counter: 0
+  DayImage: {fileID: 0}
+  childCount: 0
   start: 0
   day: 0
   PauseMenu: {fileID: 0}
+  GameOverMenu: {fileID: 0}
   MarketMenu: {fileID: 0}
   isPlaying: 0
   dayText: {fileID: 0}
@@ -1850,7 +1853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.7272, y: 17}
+  m_AnchoredPosition: {x: -24.7272, y: -96}
   m_SizeDelta: {x: 1689.8239, y: 673.5959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1557147212
@@ -1873,9 +1876,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "As\u0131l macera \u015Fimdi ba\u015Fl\u0131yor. Zaman k\xFCresini korumak
-    i\xE7in onun g\xFCc\xFCn\xFC kullan. Sak\u0131n zaman ak\u0131\u015F h\u0131z\u0131n\u0131n
-    dengesini bozma!!! \nONU B\u0130R DENGEDE TUTMAYA \xC7ALI\u015E..."
+  m_text: "Bu kaza sonras\u0131 Zaman K\xFCresi bozulmu\u015Ftu. Zaman\u0131 dengede
+    tutmak ve korumak i\xE7in onun g\xFCc\xFCn\xFC kullan. Sak\u0131n zaman ak\u0131\u015F
+    h\u0131z\u0131n\u0131n dengesini bozma!!! \nONU B\u0130R DENGEDE TUTMAYA \xC7ALI\u015E..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2062,7 +2065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.7272, y: 17}
+  m_AnchoredPosition: {x: -24.7272, y: -19}
   m_SizeDelta: {x: 1689.8239, y: 673.5959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1649926906
