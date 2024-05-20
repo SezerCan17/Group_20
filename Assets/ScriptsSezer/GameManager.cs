@@ -59,12 +59,13 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Tutorial.SetActive(true);
-        PauseMenu.SetActive(false);
-        dayPanel.SetActive(false);
-        PlayerControllerTutorial_();
-       
-        Time.timeScale = 0f;
+        if (SceneManager.GetActiveScene().buildIndex == 1) 
+        {
+            PlayerControllerTutorial_();
+
+            Time.timeScale = 0f;
+        }
+        
     }
     private void Update()
     {
@@ -130,9 +131,13 @@ public class GameManager : MonoBehaviour
 
         
         
+        
     }
     public void PlayerControllerTutorial_()
     {
+        Tutorial.SetActive(true);
+        PauseMenu.SetActive(false);
+        dayPanel.SetActive(false);
         PlayerControllerTutorial.SetActive(true);
         
         player = true;
