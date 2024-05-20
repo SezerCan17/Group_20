@@ -43,7 +43,7 @@ public class Rover : MonoBehaviour
         }
         else
         {
-            if (carriedResourceCount >= 10)
+            if (carriedResourceCount >= 5)
             {
                 GoToDepot();
             }

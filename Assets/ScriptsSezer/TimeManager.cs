@@ -113,6 +113,11 @@ public class TimeManager : MonoBehaviour
                 
             }
         }
+
+        if(TimeSlider.value != 0.0f && TimeSlider.value!=44f)
+        {
+            isAlertActive = false;
+        }
     }
 
     public void Alert()

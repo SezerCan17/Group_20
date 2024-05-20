@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
 
     public Transform healthBar;
 
+    public TimeManager timeManager;
+
     
 
     private void Start()
@@ -121,7 +123,9 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log("Gün2 Kontrol!!");
                 StartDay();
+                
             }
         }
         
@@ -267,8 +271,8 @@ public class GameManager : MonoBehaviour
 
     void StartDay()
     {
-       
-        dayPanel.SetActive(false);
+
+        Debug.Log("Gün2 Kontrol2");
         GameObject[] rovers = GameObject.FindGameObjectsWithTag("Rover");
 
         foreach (GameObject rover in rovers)
@@ -277,8 +281,9 @@ public class GameManager : MonoBehaviour
             rover.GetComponent<Rover>().enabled = true;
             
         }
-        
-
+        Debug.Log("Gün2 Kontrol3");
+        dayPanel.SetActive(false);
+        timeManager.TimeSlider.value = 1;
         isPlaying = true;
         spawnCount = 0;
         
