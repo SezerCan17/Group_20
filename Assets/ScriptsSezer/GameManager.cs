@@ -17,11 +17,19 @@ public class GameManager : MonoBehaviour
     public float counter = 0;
     public Image DayImage;
     public int childCount;
+    private bool tutorialFinish = false;
+
+    public GameObject PlayerControllerTutorial;
+    public GameObject TimeControllerTutorial;
+    public GameObject ResourceControllerTutorial;
+    public GameObject HealthBarTutorial;
+    public GameObject Tutorial;
+    private bool player, time, resource, health;
    
   
     public bool start=false;
 
-    public int day;
+    public int day=1;
     public GameObject PauseMenu;
     public GameObject GameOverMenu;
     public GameObject MarketMenu;
@@ -46,8 +54,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        day = 1;
+    }
+
+    private void Start()
+    {
+        Tutorial.SetActive(true);
         PauseMenu.SetActive(false);
-        PrepareDay();
+        dayPanel.SetActive(false);
+        PlayerControllerTutorial_();
+       
+        Time.timeScale = 0f;
     }
     private void Update()
     {
@@ -84,7 +101,7 @@ public class GameManager : MonoBehaviour
         
 
 
-        if(isPlaying)
+        if(isPlaying && tutorialFinish)
         {
             if (spawnCount < (day * 10))
             {
@@ -102,16 +119,60 @@ public class GameManager : MonoBehaviour
                 EndDay();
             }
         }
-        else
+        else if(!isPlaying && tutorialFinish)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 StartDay();
             }
         }
+        
 
         
         
+    }
+    public void PlayerControllerTutorial_()
+    {
+        PlayerControllerTutorial.SetActive(true);
+        
+        player = true;
+
+    }
+    
+    public void TutorialNextButton()
+    {
+        if(player)
+        {
+            PlayerControllerTutorial.SetActive(false);
+            TimeControllerTutorial.SetActive(true);
+            player= false;
+            time = true;
+        }
+        else if(time)
+        {
+            TimeControllerTutorial.SetActive(false);
+            ResourceControllerTutorial.SetActive(true);
+            time= false;
+            resource = true;
+        }
+        else if(resource)
+        {
+            ResourceControllerTutorial.SetActive(false);
+            HealthBarTutorial.SetActive(true);
+            resource=false;
+            health = true;
+        }
+        else if(health)
+        {
+            HealthBarTutorial.SetActive(false);
+            Tutorial.SetActive(false);
+            health=false;
+            day = 1;
+            tutorialFinish = true;
+          
+            PrepareDay();
+            Time.timeScale = 1f;
+        }
     }
     
     void SpawnEnemy()
@@ -140,12 +201,12 @@ public class GameManager : MonoBehaviour
          {
             Debug.Log(" gün 1 lo");
             StartCoroutine(CounterCoroutine4());
-        }
-        else
-        {
+         }
+         else if (day >1) 
+         {
             dayText.text = "Gün " + day.ToString();
             StartCoroutine(CounterCoroutine3());
-        }
+         }
 
         
         
@@ -198,11 +259,14 @@ public class GameManager : MonoBehaviour
         }
 
         DayImage.color = targetColor;
+        dayPanel.SetActive(false);
 
     }
 
     void StartDay()
     {
+       
+        dayPanel.SetActive(false);
         GameObject[] rovers = GameObject.FindGameObjectsWithTag("Rover");
 
         foreach (GameObject rover in rovers)
@@ -211,7 +275,7 @@ public class GameManager : MonoBehaviour
             rover.GetComponent<Rover>().enabled = true;
             
         }
-        dayPanel.SetActive(false);
+        
 
         isPlaying = true;
         spawnCount = 0;
@@ -249,13 +313,8 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator CounterCoroutine()
     {
-        float counter = 0f;
-        while (counter < 10f)
-        {
-            counter += Time.deltaTime;
-            
-            yield return null;
-        }
+       
+        yield return new WaitForSeconds(10f);
 
         Story1.SetActive(false);
         Story2.SetActive(true);
@@ -264,13 +323,8 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator CounterCoroutine2()
     {
-        float counter = 0f;
-        while (counter < 10f)
-        {
-            counter += Time.deltaTime;
-          
-            yield return null;
-        }
+       
+        yield return new WaitForSeconds(10f);
 
         Story1.SetActive(false);
         

@@ -1264,8 +1264,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 388561632}
   - {fileID: 1810745044}
+  - {fileID: 388561632}
   - {fileID: 24241748}
   - {fileID: 1760049066}
   - {fileID: 1318521711}
@@ -2184,7 +2184,7 @@ PrefabInstance:
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: canvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1309287008}
     - target: {fileID: 11415212, guid: fe9bfb5044c0cc646baba1ad7d354100, type: 3}
       propertyPath: interactable
       value: 0
