@@ -117,7 +117,7 @@ public class TimeManager : MonoBehaviour
         if(TimeSlider.value != 0.0f && TimeSlider.value!=44f)
         {
             isAlertActive = false;
-            alertDuration = 0.0f;
+            alertDuration = 10f;
         }
     }
 
