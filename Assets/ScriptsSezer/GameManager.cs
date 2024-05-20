@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Google.Protobuf.WellKnownTypes;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,12 +15,15 @@ public class GameManager : MonoBehaviour
     public GameObject Story3;
     public ResourceController resources;
     public float counter = 0;
+    public Image DayImage;
+    public int childCount;
    
   
     public bool start=false;
 
     public int day;
     public GameObject PauseMenu;
+    public GameObject GameOverMenu;
     public GameObject MarketMenu;
     public bool isPlaying = false;
 
@@ -132,12 +136,72 @@ public class GameManager : MonoBehaviour
     }
     void PrepareDay()
     {
-        
-        dayText.text = "Gün " + day.ToString();
+         if(day==1)
+         {
+            Debug.Log(" gün 1 lo");
+            StartCoroutine(CounterCoroutine4());
+        }
+        else
+        {
+            dayText.text = "Gün " + day.ToString();
+            StartCoroutine(CounterCoroutine3());
+        }
 
+        
+        
+    }
+    private IEnumerator CounterCoroutine3()
+    {
+        float duration = 3f;
+        yield return new WaitForSeconds(2.0f);
         dayPanel.SetActive(true);
+        Color color = DayImage.color;
+        color.a = 0f;
+
+        Color targetColor = DayImage.color;
+        targetColor.a = 1f;
+        float elapsedTime = 0;
+
+        // Renk alfa kanalýný þeffaftan opaklýða deðiþtir
+        while (elapsedTime < duration)
+        {
+            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / duration);
+            DayImage.color = new Color(color.r, color.g, color.b, alpha);
+            elapsedTime += Time.deltaTime;
+            yield return null; // Bir frame bekle
+        }
+
+        // Rengi tamamen opak hale getir
+        DayImage.color = targetColor;
+
     }
 
+    private IEnumerator CounterCoroutine4()
+    {
+        float duration = 3f;
+        dayPanel.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        
+        Color color = DayImage.color;
+        color.a = 1f;
+
+        Color targetColor = DayImage.color;
+        targetColor.a = 0f;
+        float elapsedTime = 0;
+
+        // Renk alfa kanalýný þeffaftan opaklýða deðiþtir
+        while (elapsedTime < duration)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+            DayImage.color = new Color(color.r, color.g, color.b, alpha);
+            elapsedTime += Time.deltaTime;
+            yield return null; // Bir frame bekle
+        }
+
+        // Rengi tamamen opak hale getir
+        DayImage.color = targetColor;
+
+    }
 
     void StartDay()
     {
@@ -252,6 +316,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Time.timeScale = 0f;
+        GameOverMenu.SetActive(true);
         Debug.Log("Game Over");
     }
 
@@ -259,21 +325,25 @@ public class GameManager : MonoBehaviour
 
     public void AttackBase()
     {
-        int childCount = healthBar.transform.childCount;
+        childCount = healthBar.transform.childCount;
 
         
         if (childCount > 0)
         {
            
             GameObject lastChild = healthBar.GetChild(childCount - 1).gameObject;
-
+            
            
             Destroy(lastChild);
+
+             
+            
         }
-        else
+        else if(childCount ==0)
         {
             GameOver();
         }
+        
 
     }
 

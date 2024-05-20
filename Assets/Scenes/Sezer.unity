@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 099d389f93b1e2347b975a37beaad622, type: 2}
 --- !u!1 &2456218
 GameObject:
   m_ObjectHideFlags: 0
@@ -7256,7 +7256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wave 1
+  m_text: "G\xFCn 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14862,7 +14862,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b84bb07eaf91a42a4d55c34ee92219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoFlip: {fileID: 0}
+  MainMenu: {fileID: 0}
+  Story1: {fileID: 0}
+  Story2: {fileID: 0}
+  Story3: {fileID: 0}
   resources: {fileID: 114718317}
+  counter: 0
+  DayImage: {fileID: 1750992657}
+  start: 0
   day: 1
   PauseMenu: {fileID: 1150987034}
   MarketMenu: {fileID: 7673405605075338313}
