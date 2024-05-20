@@ -17,7 +17,7 @@ public class TimeManager : MonoBehaviour
 
     private bool isAlertActive = false;
     private float alertTimer = 0.0f;
-    private float alertDuration = 7.0f; 
+    private float alertDuration = 10.0f; 
 
     public float blinkSpeed = 1.0f; 
     public Image alertImage;
@@ -117,6 +117,7 @@ public class TimeManager : MonoBehaviour
         if(TimeSlider.value != 0.0f && TimeSlider.value!=44f)
         {
             isAlertActive = false;
+            alertDuration = 0.0f;
         }
     }
 
@@ -124,7 +125,7 @@ public class TimeManager : MonoBehaviour
     {
         isAlertActive = true;
 
-        if (currentAlpha <= 0.0f)
+             if (currentAlpha <= 0.0f)
             {
                 targetAlpha = 1.0f;
             }

@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
         dayPanel.SetActive(true);
         Color color = DayImage.color;
         color.a = 0f;
-
+        
         Color targetColor = DayImage.color;
         targetColor.a = 1f;
         float elapsedTime = 0;
