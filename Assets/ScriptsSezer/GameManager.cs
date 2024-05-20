@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
   
     public bool start=false;
 
-    public int day=51;
+    public int day=1;
     public GameObject PauseMenu;
     public GameObject GameOverMenu;
     public GameObject MarketMenu;
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
             HealthBarTutorial.SetActive(false);
             Tutorial.SetActive(false);
             health=false;
-            day = 51;
+            day = 1;
             tutorialFinish = true;
           
             PrepareDay();
