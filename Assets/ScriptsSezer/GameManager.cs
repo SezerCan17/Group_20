@@ -52,10 +52,7 @@ public class GameManager : MonoBehaviour
 
     public Transform healthBar;
 
-    private void Awake()
-    {
-        day = 1;
-    }
+    
 
     private void Start()
     {

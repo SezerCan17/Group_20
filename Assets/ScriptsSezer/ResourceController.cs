@@ -19,6 +19,7 @@ public class ResourceController : MonoBehaviour
     public TMP_Text greenGemText;
     public TMP_Text yellowGemText;
 
+    public GameObject ParticleSystem;
 
     public void BlueGemManager(int blueGemNumber, bool plus)
     {
@@ -32,7 +33,7 @@ public class ResourceController : MonoBehaviour
             diamond_count -= blueGemNumber;
             blueGemText.text = "Elmas: " + diamond_count;
         }
-        
+        ParticalContoller();
     }
 
     public void RedGemManager(int redGemNumber, bool plus)
@@ -48,7 +49,7 @@ public class ResourceController : MonoBehaviour
             copper_count -= redGemNumber;
             redGemText.text = "Bakýr: " + copper_count;
         }
-
+        ParticalContoller();
     }
 
     public void GreenGemManager(int greenGemNumber, bool plus)
@@ -63,7 +64,7 @@ public class ResourceController : MonoBehaviour
             iron_count -= greenGemNumber;
             greenGemText.text = "Demir: " + iron_count;
         }
-
+        ParticalContoller();
     }
 
     public void YellowGemManager(int yellowGemNumber, bool plus)
@@ -78,6 +79,23 @@ public class ResourceController : MonoBehaviour
             gold_count -= yellowGemNumber;
             yellowGemText.text = "Altýn: " + gold_count;
         }
+        ParticalContoller();
+
+    }
+
+    public void ParticalContoller()
+    {
+        ParticleSystem.SetActive(true);
+        StartCoroutine(CounterCoroutine());
+    }
+
+    private IEnumerator CounterCoroutine()
+    {
+
+        yield return new WaitForSeconds(3f);
+
+        ParticleSystem.SetActive(false);
+
 
     }
 
