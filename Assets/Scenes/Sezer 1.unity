@@ -548,6 +548,7 @@ MonoBehaviour:
   redGemText: {fileID: 1239481403}
   greenGemText: {fileID: 761276580}
   yellowGemText: {fileID: 226183408}
+  ParticleSystem: {fileID: 0}
 --- !u!4 &114718318
 Transform:
   m_ObjectHideFlags: 0
@@ -6489,6 +6490,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeSlider: {fileID: 717667517}
+  GameManager: {fileID: 0}
+  ImageGo: {fileID: 0}
+  BuildManager: {fileID: 0}
+  blinkSpeed: 1
+  alertImage: {fileID: 0}
 --- !u!4 &1141051899
 Transform:
   m_ObjectHideFlags: 0
@@ -10248,9 +10254,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b84bb07eaf91a42a4d55c34ee92219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoFlip: {fileID: 0}
+  MainMenu: {fileID: 0}
+  Story1: {fileID: 0}
+  Story2: {fileID: 0}
+  Story3: {fileID: 0}
   resources: {fileID: 114718317}
+  counter: 0
+  DayImage: {fileID: 0}
+  childCount: 0
+  PlayerControllerTutorial: {fileID: 0}
+  TimeControllerTutorial: {fileID: 0}
+  ResourceControllerTutorial: {fileID: 0}
+  HealthBarTutorial: {fileID: 0}
+  Tutorial: {fileID: 0}
+  start: 0
   day: 1
   PauseMenu: {fileID: 1150987034}
+  GameOverMenu: {fileID: 0}
   MarketMenu: {fileID: 7673405605075338313}
   isPlaying: 0
   dayText: {fileID: 866686077}
@@ -10260,6 +10281,7 @@ MonoBehaviour:
     type: 3}
   enemyTarget: {fileID: 1210603440}
   healthBar: {fileID: 1263151912}
+  timeManager: {fileID: 0}
 --- !u!4 &1918582058
 Transform:
   m_ObjectHideFlags: 0

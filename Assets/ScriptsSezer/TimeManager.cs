@@ -5,9 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 using System.Threading;
 using UnityEngine.AI;
+using System;
+//using UnityEngine.UIElements;
 public class TimeManager : MonoBehaviour
 {
     public Slider TimeSlider;
+    public Image alertImage;
     private bool slowDown = false;
     private bool speedUp = false;
     private bool normalTime=false;
@@ -20,17 +23,24 @@ public class TimeManager : MonoBehaviour
     private float alertDuration = 10.0f; 
 
     public float blinkSpeed = 1.0f; 
-    public Image alertImage;
+    
     private float targetAlpha = 0.0f;
     private float currentAlpha = 0.0f;
 
+   
 
     void Start()
     {
         NormalTimeButton();
         TimeSlider.value = 1;
+
+
+        
+
     }
+
     
+
     void Update()
     {
         if(slowDown)

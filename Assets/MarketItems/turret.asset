@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: turret
   type: turret
-  copper_cost: 0
-  iron_cost: 0
-  gold_cost: 0
+  copper_cost: 50
+  iron_cost: 30
+  gold_cost: 10
   diamond_cost: 0
   description: 
   icon: {fileID: 0}

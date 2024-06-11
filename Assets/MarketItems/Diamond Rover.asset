@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: blue_rover
   type: rover
-  copper_cost: 10
-  iron_cost: 25
-  gold_cost: 50
+  copper_cost: 30
+  iron_cost: 20
+  gold_cost: 10
   diamond_cost: 0
   description: 
   icon: {fileID: 0}

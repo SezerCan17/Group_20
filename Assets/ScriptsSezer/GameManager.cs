@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 
             Time.timeScale = 0f;
         }
+
         
     }
     private void Update()
@@ -375,11 +376,16 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0f;
         GameOverMenu.SetActive(true);
+        StartCoroutine(timecounter());
         Debug.Log("Game Over");
     }
 
+    IEnumerator timecounter()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
 
 
     public void AttackBase()

@@ -131,7 +131,7 @@ public class BuildManager : MonoBehaviour
                         player.buildMode = false;
                         canPlace = false;
                 }
-                return; 
+                //return; 
             }
         }
     }

@@ -704,6 +704,11 @@ MonoBehaviour:
   counter: 0
   DayImage: {fileID: 0}
   childCount: 0
+  PlayerControllerTutorial: {fileID: 0}
+  TimeControllerTutorial: {fileID: 0}
+  ResourceControllerTutorial: {fileID: 0}
+  HealthBarTutorial: {fileID: 0}
+  Tutorial: {fileID: 0}
   start: 0
   day: 0
   PauseMenu: {fileID: 0}
@@ -716,6 +721,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 0}
   enemyTarget: {fileID: 0}
   healthBar: {fileID: 0}
+  timeManager: {fileID: 0}
 --- !u!4 &820656662
 Transform:
   m_ObjectHideFlags: 0

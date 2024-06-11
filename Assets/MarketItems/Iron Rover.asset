@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: green_rover
   type: rover
-  copper_cost: 0
+  copper_cost: 25
   iron_cost: 0
   gold_cost: 0
   diamond_cost: 0
