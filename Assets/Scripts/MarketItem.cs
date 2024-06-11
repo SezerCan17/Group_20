@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "New Market Item", menuName = "Market Data", order = 1)]
 

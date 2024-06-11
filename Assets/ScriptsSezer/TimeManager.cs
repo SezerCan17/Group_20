@@ -6,6 +6,7 @@ using TMPro;
 using System.Threading;
 using UnityEngine.AI;
 using System;
+using UnityEditor;
 //using UnityEngine.UIElements;
 public class TimeManager : MonoBehaviour
 {

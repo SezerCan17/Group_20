@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
-
+using UnityEditor;
 public class Rover : MonoBehaviour
 {
     [SerializeField] public ResourceSpawner spawner; 

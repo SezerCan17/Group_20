@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using Google.Protobuf.WellKnownTypes;
-
+using UnityEditor;
 public class GameManager : MonoBehaviour
 {
     public AutoFlip autoFlip;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1) 
         {
             PlayerControllerTutorial_();
-
+           
             Time.timeScale = 0f;
         }
 

@@ -5,7 +5,7 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEditor;
 public class Enemy : Agent
 {
 

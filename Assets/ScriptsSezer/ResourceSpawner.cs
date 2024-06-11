@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEditor;
 public class ResourceSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject resourcePrefab; 
